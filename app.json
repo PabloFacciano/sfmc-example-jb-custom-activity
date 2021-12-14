@@ -1,5 +1,5 @@
 {
-  "name": "Custom Activity",
+  "name": "Custom Activity Test commit",
   "description": "A barebones Journey Builder Custom Activity example.",
   "repository": "https://github.com/salesforce-marketingcloud/sfmc-example-jb-custom-activity",
   "keywords": ["node", "express", "static"]
