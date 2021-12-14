@@ -17,6 +17,20 @@ import Postmonger from 'postmonger';
 // reference handy and pass it into your UI framework if you're using React, Angular, Vue, etc.
 const connection = new Postmonger.Session();
 
+const Counter = {
+    data() {
+        return {
+        counter: 0
+        }
+    },
+    mounted() {
+        setInterval(() => {
+        this.counter++
+        }, 1000)
+    }
+}
+Vue.createApp(Counter).mount('#app')
+
 
 // we'll store the activity on this variable when we receive it
 let activity = null;
