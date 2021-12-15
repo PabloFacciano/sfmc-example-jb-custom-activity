@@ -101,11 +101,12 @@ function onInitActivity(payload) {
     // a discountCode message from the drop down list. the discountCode back arg
     // will be set once the journey executes the activity
     
-    var url = "https://jbinteractions.s10.marketingcloudapps.com/fuelapi/internal/v1/customObjects/69ddda60-9c36-ec11-b830-48df37deb2e2/fields/"
+    var url = window.location.hostname + "/proxy/"
     fetch(url, {
         method: 'GET',
         credentials: 'include',
         headers: {
+            'Target-Endpoint': 'https://jbinteractions.s10.marketingcloudapps.com/fuelapi/internal/v1/customObjects/69ddda60-9c36-ec11-b830-48df37deb2e2/fields/',
             'Origin': 'jbinteractions.s10.marketingcloudapps.com',
             'Referer': 'https://jbinteractions.s10.marketingcloudapps.com/',
             'Host': 'jbinteractions.s10.marketingcloudapps.com'

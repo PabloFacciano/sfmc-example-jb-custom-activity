@@ -24,7 +24,7 @@ module.exports = function discountCodeExample(app, options) {
     app.use('/modules/custom-activity/dist', express.static(`${moduleDirectory}/dist`));
     app.use('/modules/custom-activity/images', express.static(`${moduleDirectory}/images`));
 
-    app.all('/proxy*', function (req, res, next) {
+    app.all('/proxy/*', function (req, res, next) {
 
         // Set CORS headers: allow all origins, methods, and headers: you may want to lock this down in a production environment
         res.header("Access-Control-Allow-Origin", "*");
