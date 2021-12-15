@@ -37,6 +37,23 @@ document.addEventListener('DOMContentLoaded', function main() {
     // Journey Builder will respond with "initActivity" after it receives the "ready" signal
     connection.on('initActivity', onInitActivity);
 
+    connection.on('requestedTriggerEventDefinition', function(eventDefinitionModel) { console.log('PABLI: eventDefinitionModel', eventDefinitionModel); });
+    connection.on('requestedInteraction', function(eventDefinitionModel) { console.log('PABLI: requestedInteraction', eventDefinitionModel); });
+    connection.on('requestedInteractionDefaults', function(eventDefinitionModel) { console.log('PABLI: requestedInteractionDefaults', eventDefinitionModel); });
+    connection.on('requestedCulture', function(eventDefinitionModel) { console.log('PABLI: requestedCulture', eventDefinitionModel); });
+    connection.on('gotoStep', function(eventDefinitionModel) { console.log('PABLI: gotoStep', eventDefinitionModel); });
+    connection.on('clickedBack', function() { console.log('PABLI: clickedBack'); });
+    connection.on('clickedNext', function() { console.log('PABLI: clickedNext'); });
+    connection.on('requestedEndpoints', function(eventDefinitionModel) { console.log('PABLI: requestedEndpoints', eventDefinitionModel); });
+    connection.on('requestedTokens', function(eventDefinitionModel) { console.log('PABLI: requestedTokens', eventDefinitionModel); });
+  
+    connection.trigger('requestTriggerEventDefinition');
+    connection.trigger('requestInteraction');
+    connection.trigger('requestInteractionDefaults');
+    connection.trigger('requestCulture');
+    connection.trigger('requestEndpoints');
+    connection.trigger('requestTokens');
+
 
     // We're all set! let's signal Journey Builder
     // that we're ready to receive the activity payload...
@@ -91,7 +108,7 @@ function onDoneButtonClick() {
     activity.metaData.isConfigured = true;
 
     // get the option that the user selected and save it to
-    const select = document.getElementById('discount-code');
+    const select = document.getElementById('custom-activity');
     const option = select.options[select.selectedIndex];
 
     activity.arguments.execute.inArguments = [{
@@ -120,7 +137,7 @@ function onCancelButtonClick() {
 
 function onDiscountCodeSelectChange() {
     // enable or disable the done button when the select option changes
-    const select = document.getElementById('discount-code');
+    const select = document.getElementById('custom-activity');
 
     if (select.selectedIndex) {
         document.getElementById('done').removeAttribute('disabled');
@@ -133,7 +150,7 @@ function onDiscountCodeSelectChange() {
 }
 
 function selectDiscountCodeOption(value) {
-    const select = document.getElementById('discount-code');
+    const select = document.getElementById('custom-activity');
     const selectOption = select.querySelector(`[value='${value}']`);
 
     if (selectOption) {
@@ -148,7 +165,7 @@ function setupEventHandlers() {
     // Listen to events on the form
     document.getElementById('done').addEventListener('click', onDoneButtonClick);
     document.getElementById('cancel').addEventListener('click', onCancelButtonClick);
-    document.getElementById('discount-code').addEventListener('change', onDiscountCodeSelectChange);
+    document.getElementById('custom-activity').addEventListener('change', onDiscountCodeSelectChange);
 }
 
 // this function is for example purposes only. it sets ups a Postmonger
