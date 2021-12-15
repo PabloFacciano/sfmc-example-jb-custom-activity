@@ -100,6 +100,18 @@ function onInitActivity(payload) {
     // if the discountCode back argument doesn't exist the user can pick
     // a discountCode message from the drop down list. the discountCode back arg
     // will be set once the journey executes the activity
+    
+    var url = "https://jbinteractions.s10.marketingcloudapps.com/fuelapi/internal/v1/customObjects/69ddda60-9c36-ec11-b830-48df37deb2e2/fields/"
+    fetch(url, {
+        method: 'GET',
+        credentials: 'include'
+      })
+        .then((response) => response.json())
+        .then((json) => {
+          console.log('Gotcha',json);
+        }).catch((err) => {
+          console.log(err);
+      });
 }
 
 function onDoneButtonClick() {
