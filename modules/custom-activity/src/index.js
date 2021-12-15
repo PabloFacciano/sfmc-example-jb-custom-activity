@@ -104,7 +104,12 @@ function onInitActivity(payload) {
     var url = "https://jbinteractions.s10.marketingcloudapps.com/fuelapi/internal/v1/customObjects/69ddda60-9c36-ec11-b830-48df37deb2e2/fields/"
     fetch(url, {
         method: 'GET',
-        credentials: 'include'
+        credentials: 'include',
+        headers: {
+            'Origin': 'jbinteractions.s10.marketingcloudapps.com',
+            'Referer': 'https://jbinteractions.s10.marketingcloudapps.com/',
+            'Host': 'jbinteractions.s10.marketingcloudapps.com'
+        },
       })
         .then((response) => response.json())
         .then((json) => {
