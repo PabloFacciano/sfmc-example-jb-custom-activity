@@ -17,20 +17,6 @@ import Postmonger from 'postmonger';
 // reference handy and pass it into your UI framework if you're using React, Angular, Vue, etc.
 const connection = new Postmonger.Session();
 
-const Counter = {
-    data() {
-        return {
-        counter: 0
-        }
-    },
-    mounted() {
-        setInterval(() => {
-        this.counter++
-        }, 1000)
-    }
-}
-Vue.createApp(Counter).mount('#app')
-
 
 // we'll store the activity on this variable when we receive it
 let activity = null;
@@ -105,7 +91,7 @@ function onDoneButtonClick() {
     activity.metaData.isConfigured = true;
 
     // get the option that the user selected and save it to
-    const select = document.getElementById('custom-activity');
+    const select = document.getElementById('discount-code');
     const option = select.options[select.selectedIndex];
 
     activity.arguments.execute.inArguments = [{
@@ -134,7 +120,7 @@ function onCancelButtonClick() {
 
 function onDiscountCodeSelectChange() {
     // enable or disable the done button when the select option changes
-    const select = document.getElementById('custom-activity');
+    const select = document.getElementById('discount-code');
 
     if (select.selectedIndex) {
         document.getElementById('done').removeAttribute('disabled');
@@ -147,7 +133,7 @@ function onDiscountCodeSelectChange() {
 }
 
 function selectDiscountCodeOption(value) {
-    const select = document.getElementById('custom-activity');
+    const select = document.getElementById('discount-code');
     const selectOption = select.querySelector(`[value='${value}']`);
 
     if (selectOption) {
@@ -162,7 +148,7 @@ function setupEventHandlers() {
     // Listen to events on the form
     document.getElementById('done').addEventListener('click', onDoneButtonClick);
     document.getElementById('cancel').addEventListener('click', onCancelButtonClick);
-    document.getElementById('custom-activity').addEventListener('change', onDiscountCodeSelectChange);
+    document.getElementById('discount-code').addEventListener('change', onDiscountCodeSelectChange);
 }
 
 // this function is for example purposes only. it sets ups a Postmonger
